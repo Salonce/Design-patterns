@@ -10,9 +10,9 @@ class TvWeatherProgrammeTest {
     @Test
     void update() {
 
-        TvWeatherProgramme tvWeatherProgramme = new TvWeatherProgramme();
-
         String weather = "cloudy";
+
+        TvWeatherProgramme tvWeatherProgramme = new TvWeatherProgramme();
 
         tvWeatherProgramme.update(weather);
 
