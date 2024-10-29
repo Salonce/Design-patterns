@@ -1,4 +1,4 @@
-package org.example;
+package org.example.Singleton;
 
 public class Singleton {
     private static Singleton singleton;

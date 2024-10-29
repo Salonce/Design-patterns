@@ -1,5 +1,6 @@
-package org.example;
+package org.example.SingletonTests;
 
+import org.example.Singleton.Singleton;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +16,6 @@ class SingletonTest {
 
     @Test
     void getSetValue() {
-
         Singleton singleton1 = Singleton.getSingleton();
         Assertions.assertEquals(0, singleton1.getValue(), "Initial value should be 0");
 
