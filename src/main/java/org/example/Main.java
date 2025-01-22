@@ -1,11 +1,14 @@
 package org.example;
 
-import java.util.Objects;
+import org.example.Decorator.Coffee;
+import org.example.Decorator.MilkDecorator;
+import org.example.Decorator.PlainCoffee;
+import org.example.Decorator.SugarDecorator;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
-
-
+        Coffee coffee = new SugarDecorator(new MilkDecorator(new PlainCoffee()));
+        System.out.println(coffee.drink());
+        System.out.println("\nCost of the coffee: " + coffee.getCost() + " PLN");
     }
 }
