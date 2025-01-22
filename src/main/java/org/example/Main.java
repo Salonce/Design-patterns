@@ -1,14 +1,43 @@
 package org.example;
 
-import org.example.Decorator.Coffee;
-import org.example.Decorator.MilkDecorator;
-import org.example.Decorator.PlainCoffee;
-import org.example.Decorator.SugarDecorator;
+import org.example.Command.Command;
+import org.example.Command.WriteCommand;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Coffee coffee = new SugarDecorator(new MilkDecorator(new PlainCoffee()));
-        System.out.println(coffee.drink());
-        System.out.println("\nCost of the coffee: " + coffee.getCost() + " PLN");
+        StringBuilder document = new StringBuilder();
+        Command writeAbcCommand = new WriteCommand(document, "ABC ");
+        Command write123Command = new WriteCommand(document, "123 ");
+
+        List<Command> commands = new ArrayList<>();
+
+        writeAbcCommand.execute();
+        commands.add(writeAbcCommand);
+
+        writeAbcCommand.execute();
+        commands.add(writeAbcCommand);
+
+        write123Command.execute();
+        commands.add(write123Command);
+
+        write123Command.execute();
+        commands.add(write123Command);
+
+        write123Command.execute();
+        commands.add(write123Command);
+
+        undoLastCommand(commands);
+        undoLastCommand(commands);
+
+        System.out.println(document.toString());
+
+    }
+
+    private static void undoLastCommand(List<Command> commands){
+        commands.get(commands.size() - 1).undo();
+        commands.remove(commands.size() - 1);
     }
 }

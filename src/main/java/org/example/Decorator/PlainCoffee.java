@@ -8,6 +8,6 @@ public class PlainCoffee implements Coffee{
 
     @Override
     public float getCost() {
-        return 2f;
+        return 2.0f;
     }
 }
