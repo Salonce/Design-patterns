@@ -2,42 +2,27 @@ package org.example;
 
 import org.example.Command.Command;
 import org.example.Command.WriteCommand;
+import org.example.Iterator.Iterator;
+import org.example.Iterator.Student;
+import org.example.Iterator.StudentGroup;
+import org.example.Iterator.StudentIterator;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        StringBuilder document = new StringBuilder();
-        Command writeAbcCommand = new WriteCommand(document, "ABC ");
-        Command write123Command = new WriteCommand(document, "123 ");
+        StudentGroup studentGroup = new StudentGroup();
+        studentGroup.addStudent(new Student("Mark", 15));
+        studentGroup.addStudent(new Student("Derek", 15));
+        studentGroup.addStudent(new Student("Martha", 16));
 
-        List<Command> commands = new ArrayList<>();
+        Iterator<Student> studentIterator = studentGroup.createIterator();
 
-        writeAbcCommand.execute();
-        commands.add(writeAbcCommand);
-
-        writeAbcCommand.execute();
-        commands.add(writeAbcCommand);
-
-        write123Command.execute();
-        commands.add(write123Command);
-
-        write123Command.execute();
-        commands.add(write123Command);
-
-        write123Command.execute();
-        commands.add(write123Command);
-
-        undoLastCommand(commands);
-        undoLastCommand(commands);
-
-        System.out.println(document.toString());
-
-    }
-
-    private static void undoLastCommand(List<Command> commands){
-        commands.get(commands.size() - 1).undo();
-        commands.remove(commands.size() - 1);
+        System.out.println("Students list: ");
+        while (studentIterator.hasNext()){
+            Student student = studentIterator.next();
+            System.out.println("Name: " + student.name() + ", age: " + student.age());
+        }
     }
 }
