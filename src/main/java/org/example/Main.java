@@ -6,23 +6,28 @@ import org.example.Iterator.Iterator;
 import org.example.Iterator.Student;
 import org.example.Iterator.StudentGroup;
 import org.example.Iterator.StudentIterator;
+import org.example.Mediator.BlackSeaDock;
+import org.example.Mediator.CoralShip;
+import org.example.Mediator.Dock;
+import org.example.Mediator.Ship;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        StudentGroup studentGroup = new StudentGroup();
-        studentGroup.addStudent(new Student("Mark", 15));
-        studentGroup.addStudent(new Student("Derek", 15));
-        studentGroup.addStudent(new Student("Martha", 16));
 
-        Iterator<Student> studentIterator = studentGroup.createIterator();
+        Dock blackSeaDock = new BlackSeaDock("Black sea dock");
+        Ship coralShip = new CoralShip(blackSeaDock, "Coral ship");
+        Ship grassShip = new CoralShip(blackSeaDock, "Grass ship");
+        Ship stoneShip = new CoralShip(blackSeaDock, "Stone ship");
 
-        System.out.println("Students list: ");
-        while (studentIterator.hasNext()){
-            Student student = studentIterator.next();
-            System.out.println("Name: " + student.name() + ", age: " + student.age());
-        }
+        coralShip.requestDocking();
+        coralShip.requestDocking();
+        coralShip.requestLeaving();
+        coralShip.requestLeaving();
+        coralShip.requestDocking();
+        grassShip.requestDocking();
+        stoneShip.requestDocking();
     }
 }
