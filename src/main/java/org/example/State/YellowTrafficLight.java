@@ -2,7 +2,11 @@ package org.example.State;
 
 public class YellowTrafficLight implements TrafficLightState {
     @Override
-    public void changeState(TrafficLightContext trafficLightContext) {
-        trafficLightContext.setTrafficLightState(new GreenTrafficLight());
+    public LightColor getColor(){
+        return LightColor.YELLOW;
+    }
+    @Override
+    public TrafficLightState nextState() {
+        return new GreenTrafficLight();
     }
 }
