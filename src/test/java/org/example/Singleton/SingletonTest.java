@@ -1,6 +1,5 @@
-package org.example.SingletonTests;
+package org.example.Singleton;
 
-import org.example.Singleton.Singleton;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
