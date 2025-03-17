@@ -27,6 +27,6 @@ class AvatarPictureTest {
 
     @Test
     void draw() {
-        Assertions.assertEquals(avatarPicture.draw(x, y), "Drawing avatar picture, type number " + faceType + " in coordinates: " + x + ", " + y + ".");
+        Assertions.assertEquals("Drawing avatar picture, type number " + faceType + " in coordinates: " + x + ", " + y + ".", avatarPicture.draw(x, y));
     }
 }
