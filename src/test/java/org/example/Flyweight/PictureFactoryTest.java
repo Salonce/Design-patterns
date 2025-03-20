@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Field;
+import java.util.Map;
+
 class PictureFactoryTest {
 
     private PictureFactory pictureFactory;
@@ -38,5 +41,30 @@ class PictureFactoryTest {
     void invalidCallThrowsException(){
         Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> pictureFactory.getPicture("invalidKey"));
         Assertions.assertEquals("Requested invalid picture key.", exception.getMessage());
+    }
+
+    @Test
+    @SuppressWarnings("unchecked")
+    void cachesCorrectly() throws Exception {
+        Field pictureMap = PictureFactory.class.getDeclaredField("pictureMap");
+        pictureMap.setAccessible(true);
+        Map<String, Picture> cache = (Map<String, Picture>) pictureMap.get(pictureFactory);
+
+        Assertions.assertTrue(cache.isEmpty());
+
+        pictureFactory.getPicture("smilingEmoji");
+        Assertions.assertEquals(1, cache.size());
+
+        pictureFactory.getPicture("smilingEmoji");
+        Assertions.assertEquals(1, cache.size());
+
+        pictureFactory.getPicture("firstAvatar");
+        Assertions.assertEquals(2, cache.size());
+
+        pictureFactory.getPicture("firstAvatar");
+        Assertions.assertEquals(2, cache.size());
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> pictureFactory.getPicture("invalidPicture"));
+        Assertions.assertEquals(2, cache.size());
     }
 }
