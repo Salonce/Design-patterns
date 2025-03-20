@@ -7,7 +7,7 @@ public class Car extends Vehicle {
     }
 
     @Override
-    public void work() {
-        System.out.println("Making a car." + "\n" + workshop1.work() + "\n" + workshop2.work());
+    public String work() {
+        return "Making a car." + "\n" + workshop1.work() + "\n" + workshop2.work();
     }
 }

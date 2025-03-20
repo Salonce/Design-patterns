@@ -10,5 +10,5 @@ public abstract class Vehicle {
     protected Workshop workshop1;
     protected Workshop workshop2;
 
-    public abstract void work();
+    public abstract String work();
 }
